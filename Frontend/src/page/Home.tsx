@@ -18,7 +18,7 @@ const TokenPlay: React.FC = () => {
           </h2>
           <p className="text-xl mb-8">Launch your in-game currency and NFTs with ease</p>
           <a
-            href="#token-launch"
+            href="/launchtoken"
             className="bg-gradient-to-r from-pink-500 to-yellow-500 text-white py-3 px-8 rounded-full text-lg font-semibold hover:from-pink-600 hover:to-yellow-600 transition-all transform hover:scale-105 inline-block"
           >
             Get Started
