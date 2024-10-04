@@ -1,24 +1,25 @@
 import React from "react";
 import { Rocket, Coins, Users } from "lucide-react";
 import { RiGamepadLine } from "react-icons/ri";
+import WalletComponent from "./components/WalletComponent";
 
-const TokenPlay: React.FC = () => {
+const Page: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 text-white">
       {/* Header */}
-   
+    
 
       {/* Banner */}
       <div className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-800 to-indigo-800 opacity-50"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMjkyNTI0Ij48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiMzZjNmNDYiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=')] opacity-20"></div>
         <div className="container mx-auto text-center relative z-10">
-          <h2 className="text-5xl md:text-6xl font-bold mb-4 animate-pulse">
+          <h2 className="text-5xl md:text-6xl font-bold mb-4 animate-pulse ">
             Welcome to TokenPlay
           </h2>
-          <p className="text-xl mb-8">Launch your in-game currency and NFTs with ease</p>
+          <p className="text-xl mb-8 --text-ock-foreground ">Launch your in-game currency and NFTs with ease</p>
           <a
-            href="/launchtoken"
+            href="/LaunchToken"
             className="bg-gradient-to-r from-pink-500 to-yellow-500 text-white py-3 px-8 rounded-full text-lg font-semibold hover:from-pink-600 hover:to-yellow-600 transition-all transform hover:scale-105 inline-block"
           >
             Get Started
@@ -78,4 +79,4 @@ const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description:
     );
 }
 
-export default TokenPlay;
+export default Page;
