@@ -1,3 +1,6 @@
 [submodule "TokenPlay/lib/forge-std"]
 	path = TokenPlay/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "TokenPlay/lib/openzeppelin-contracts"]
+	path = TokenPlay/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
