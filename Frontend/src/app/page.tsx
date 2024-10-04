@@ -1,7 +1,6 @@
 import React from "react";
 import { Rocket, Coins, Users } from "lucide-react";
 import { RiGamepadLine } from "react-icons/ri";
-import WalletComponent from "./components/WalletComponent";
 
 const Page: React.FC = () => {
   return (
