@@ -37,8 +37,8 @@ function Layout({ children }) {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6">
-            <Link href="/launchtoken" className="hover:text-indigo-200 transition-colors">
-              Launch Token
+            <Link href="/LaunchToken" className="hover:text-indigo-200 transition-colors">
+              Launch NFT
             </Link>
             <WalletComponent />
           </nav>
@@ -62,12 +62,57 @@ function Layout({ children }) {
 
       <main className="w-full">{children}</main>
 
-      <footer className="bg-gray-800 text-white py-8 px-4 ">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 TokenPlay. All rights reserved.</p>
-          <p className="mt-2">Powered by Lisk</p>
-        </div>
-      </footer>
+      <footer className="bg-gray-800 text-gray-300 py-12">
+  <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+    {/* Brand and Info */}
+    <div>
+      <h2 className="text-2xl font-bold text-white mb-4">TokenPlay</h2>
+      <p className="text-sm mb-4">
+        Empowering gamers and developers with in-game currency, NFTs, and blockchain solutions.
+      </p>
+      <p>&copy; 2024 TokenPlay. All rights reserved.</p>
+    </div>
+
+    {/* Links */}
+    <div>
+      <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+      <ul>
+        <li>
+          <a href="/about" className="hover:underline">About Us</a>
+        </li>
+        <li>
+          <a href="/contact" className="hover:underline">Contact</a>
+        </li>
+        <li>
+          <a href="/privacy" className="hover:underline">Privacy Policy</a>
+        </li>
+        <li>
+          <a href="/terms" className="hover:underline">Terms of Service</a>
+        </li>
+      </ul>
+    </div>
+
+    {/* Social Media */}
+    <div>
+      <h3 className="text-lg font-semibold text-white mb-4">Follow Us</h3>
+      <div className="flex justify-center md:justify-start space-x-4">
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-twitter text-xl hover:text-white"></i>
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-facebook text-xl hover:text-white"></i>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-linkedin text-xl hover:text-white"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-instagram text-xl hover:text-white"></i>
+        </a>
+      </div>
+      <p className="mt-4 text-sm text-gray-400">Powered by Coinbase</p>
+    </div>
+  </div>
+</footer>
     </div>
   );
 }
