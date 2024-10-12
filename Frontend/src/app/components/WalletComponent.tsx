@@ -1,14 +1,11 @@
-
 "use client";
 import {
   ConnectWallet,
   Wallet,
-  WalletDropdown
-,
-  WalletDropdownBasename
-, 
-  WalletDropdownFundLink, 
-  WalletDropdownLink, 
+  WalletDropdown,
+  WalletDropdownBasename,
+  WalletDropdownFundLink,
+  WalletDropdownLink,
   WalletDropdownDisconnect,
 } from '@coinbase/onchainkit/wallet';
 import {
@@ -16,30 +13,38 @@ import {
   Avatar,
   Name,
   Identity,
-  EthBalance, 
+  EthBalance,
 } from '@coinbase/onchainkit/identity';
- 
-// omitted for brevity
+import { useAccount } from 'wagmi';
+
 const WalletComponent = () => {
+  const { address, isConnected } = useAccount();
+
   return (
-  
-    // omitted for brevity
-     
     <Wallet>
       <ConnectWallet>
-        <Avatar className="h-6 w-6" />
-        <Name />
+        {isConnected && address ? (
+          <>
+            <Avatar address={address} className="h-6 w-6" />
+            <Name address={address} />
+          </>
+        ) : (
+          <span>Connect Wallet</span>
+        )}
       </ConnectWallet>
       <WalletDropdown>
-        <Identity 
-          className="px-4 pt-3 pb-2" 
-          hasCopyAddressOnClick
-        >
-          <Avatar />
-          <Name />
-          <Address />
-          <EthBalance />
-        </Identity>
+        {isConnected && address ? (
+          <Identity 
+            className="px-4 pt-3 pb-2" 
+            hasCopyAddressOnClick
+            address={address}
+          >
+            <Avatar address={address} />
+            <Name address={address} />
+            <Address address={address} />
+            <EthBalance address={address} />
+          </Identity>
+        ) : null}
         <WalletDropdownBasename />
         <WalletDropdownLink
           icon="wallet"
