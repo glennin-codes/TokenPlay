@@ -8,57 +8,62 @@ function Layout({ children }) {
 
   return (
     <div className="w-full">
-      <header className="bg-indigo-600 text-white shadow-lg">
-        <div className="container mx-auto p-4 flex justify-between items-center">
-          <Link href="/">
-            <h1 className="text-2xl font-bold cursor-pointer">TokenPlay</h1>
-          </Link>
-          
-          {/* Hamburger Menu Button for Mobile */}
-          <button
-            className="block lg:hidden text-white focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
-              />
-            </svg>
-          </button>
+   <header className="bg-indigo-600 text-white shadow-lg">
+  <div className="container mx-auto p-4 flex justify-between items-center">
+    <Link href="/" className="flex items-center space-x-4">
+      <h1 className="text-2xl font-bold cursor-pointer">TokenPlay</h1>
+      <span className="text-sm text-indigo-200">Your gateway to Gaming.</span>
+    </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
-            <Link href="/LaunchToken" className="hover:text-indigo-200 transition-colors">
-              Launch NFT
-            </Link>
-            <WalletComponent />
-          </nav>
-        </div>
+    {/* Hamburger Menu Button for Mobile */}
+    <button
+      className="block lg:hidden text-white focus:outline-none transition-transform duration-200 transform"
+      onClick={() => setIsMenuOpen(!isMenuOpen)}
+      aria-label="Toggle navigation"
+    >
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+        />
+      </svg>
+    </button>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden bg-indigo-700">
-            <nav className="flex flex-col space-y-4 p-4">
-              <Link
-                href="/launchtoken"
-                className="text-white hover:text-indigo-300 transition-colors"
-              >
-                Launch Token
-              </Link>
-              <WalletComponent />
-            </nav>
-          </div>
-        )}
-      </header>
+    {/* Desktop Navigation */}
+    <nav className="hidden lg:flex items-center space-x-6">
+      <Link
+        href="/LaunchToken"
+        className="hover:text-indigo-200 transition-colors duration-200"
+      >
+        Launch NFT
+      </Link>
+      <WalletComponent />
+    </nav>
+  </div>
+
+  {/* Mobile Navigation */}
+  {isMenuOpen && (
+    <div className="lg:hidden bg-indigo-700 rounded-b-lg shadow-lg">
+      <nav className="flex flex-col space-y-4 p-4">
+        <Link
+          href="/launchtoken"
+          className="text-white hover:text-indigo-300 transition-colors duration-200"
+        >
+          Launch Token
+        </Link>
+        <WalletComponent />
+      </nav>
+    </div>
+  )}
+</header>
 
       <main className="w-full">{children}</main>
 
