@@ -1,9 +1,11 @@
 "use client";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAccount, useWriteContract, useTransaction, useChainId } from 'wagmi';
 import { parseEther } from 'viem';
 import { base } from 'viem/chains';
 import WalletComponent from '../components/WalletComponent';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TOKEN_FACTORY_ADDRESS = '0x71Bae17ccd38EBaf2576E39d228F99Da9B836b2d';
 
@@ -24,9 +26,9 @@ const TokenFactoryABI = [
 ] as const;
 
 export default function LaunchToken() {
-  const [maxPresaledAddresses, setMaxPresaledAddresses] = useState<number>(10);
-  const [price, setPrice] = useState<string>('0.1');
-  const [maxTokenIds, setMaxTokenIds] = useState<number>(100);
+  const [maxPresaledAddresses, setMaxPresaledAddresses] = useState<number>();
+  const [price, setPrice] = useState<string>('');
+  const [maxTokenIds, setMaxTokenIds] = useState<number>();
   const [name, setName] = useState<string>('');
   const [symbol, setSymbol] = useState<string>('');
 
@@ -35,16 +37,29 @@ export default function LaunchToken() {
 
   const { writeContract, data: hash, isPending } = useWriteContract();
 
-  const { isLoading: isConfirming, isSuccess } = useTransaction({
+  const { isLoading: isConfirming, isSuccess,isError } = useTransaction({
     hash,
   });
+  useEffect(()=>{
+    if(isSuccess){
+      toast.success('Successfully deployed the NFT ');
+    }
+  
+
+  },
+  [isSuccess])
 
   const handleDeploy = () => {
     if (!address) {
       console.error('No address found. Please connect your wallet.');
+      toast.error('No address found. Please connect your wallet.');
       return;
     }
-
+    if (!maxPresaledAddresses || !price || !maxTokenIds || !name || !symbol) {
+      console.error("Please fill in all required fields.");
+      toast.error("Please fill in all required fields.");
+      return;
+    }
     writeContract({
       address: TOKEN_FACTORY_ADDRESS,
       abi: TokenFactoryABI,
@@ -58,14 +73,16 @@ export default function LaunchToken() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 py-6 flex flex-col justify-center sm:py-12 text-white">
+       <ToastContainer />
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
         <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-yellow-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
         <div className="relative px-4 py-10 bg-black bg-opacity-50 backdrop-blur-lg shadow-lg sm:rounded-3xl sm:p-20 border border-gray-700">
           <div className="max-w-md mx-auto">
             <div>
-              <h1 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">
-                Launch Your NFT 
-              </h1>
+            <h1 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">
+  Launch Your NFT
+</h1>
+
             </div>
             <div className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-300 sm:text-lg sm:leading-7">
@@ -105,6 +122,7 @@ export default function LaunchToken() {
                   <div className="mt-4 text-sm text-green-400">
                     Successfully deployed! Transaction: {hash}
                   </div>
+                  
                 )}
               </div>
             </div>
